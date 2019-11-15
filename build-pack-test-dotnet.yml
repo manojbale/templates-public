@@ -19,7 +19,7 @@ jobs:
        displayName: 'dotnet restore'
        inputs:
          command: restore
-         projects: '$(build.sourcesdirectory)/pipeline-dotnet-core.csproj'
+         projects: '$(build.sourcesdirectory)/WebApplication1/WebApplication1.sln'
          vstsFeed: '2a44597c-f4e1-43df-a2e1-69044117f53b'
          includeNuGetOrg: false
      
