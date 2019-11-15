@@ -4,37 +4,40 @@ parameters:
   package_feed: ''
 # Test
 
-steps:
-- bash: |
-    echo 'Testing ${{ parameters.test_path }}'
-    echo 'Building ${{ parameters.package_path }}'
-    echo 'Restoring from ${{ parameters.package_feed }}'
-  displayName: 'Display: Package Path Info'
-
-- task: DotNetCoreCLI@2
-  displayName: 'Build: Restore'
-  inputs:
-    command: 'restore'
-    projects: '${{ parameters.package_path }}**/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: '${{ parameters.package_feed }}'
-    includeNuGetOrg: true
-
-- task: DotNetCoreCLI@2
-  displayName: 'Test: Unit Tests'
-  inputs:
-    command: 'test'
-    projects: '${{ parameters.test_path }}/*.csproj'
-    arguments: '--no-restore'
-    failOnStderr: true 
-
-# Pack NuGet packages.
-- task: DotNetCoreCLI@2
-  displayName: 'Build: Pack'
-  inputs:
-    command: 'pack'
-    configuration: 'release'
-    arguments: '--no-restore'
-    versioningScheme: byEnvVar
-    versionEnvVar: Build.BuildNumber
-    packagesToPack: '${{ parameters.package_path }}/*.csproj'
+jobs: 
+   - job: 'restore_job'
+     displayName: 'restore_job'
+     steps:
+     - bash: |
+         echo 'Testing ${{ parameters.test_path }}'
+         echo 'Building ${{ parameters.package_path }}'
+         echo 'Restoring from ${{ parameters.package_feed }}'
+       displayName: 'Display: Package Path Info'
+     
+     - task: DotNetCoreCLI@2
+       displayName: 'Build: Restore'
+       inputs:
+         command: 'restore'
+         projects: '${{ parameters.package_path }}**/*.csproj'
+         feedsToUse: 'select'
+         vstsFeed: '${{ parameters.package_feed }}'
+         includeNuGetOrg: true
+     
+     - task: DotNetCoreCLI@2
+       displayName: 'Test: Unit Tests'
+       inputs:
+         command: 'test'
+         projects: '${{ parameters.test_path }}/*.csproj'
+         arguments: '--no-restore'
+         failOnStderr: true 
+     
+     # Pack NuGet packages.
+     - task: DotNetCoreCLI@2
+       displayName: 'Build: Pack'
+       inputs:
+         command: 'pack'
+         configuration: 'release'
+         arguments: '--no-restore'
+         versioningScheme: byEnvVar
+         versionEnvVar: Build.BuildNumber
+         packagesToPack: '${{ parameters.package_path }}/*.csproj'
