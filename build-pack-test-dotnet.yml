@@ -28,7 +28,7 @@ jobs:
        inputs:
          command: restore
          projects: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
-         vstsFeed: '2a44597c-f4e1-43df-a2e1-69044117f53b'
+         vstsFeed: 'manojbale'
          includeNuGetOrg: false     
      
 #     - task: DotNetCoreCLI@2
