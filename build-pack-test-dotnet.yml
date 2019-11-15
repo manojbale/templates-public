@@ -24,10 +24,10 @@ jobs:
          includeNuGetOrg: false
          
      - task: DotNetCoreCLI@2
-       displayName: 'dotnet restore website'
+       displayName: 'dotnet restore WebApplication3'
        inputs:
          command: restore
-         projects: '$(build.sourcesdirectory)/WebSite1/WebSite1(1).sln'
+         projects: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
          vstsFeed: '2a44597c-f4e1-43df-a2e1-69044117f53b'
          includeNuGetOrg: false     
      
