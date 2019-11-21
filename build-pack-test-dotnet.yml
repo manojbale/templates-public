@@ -13,6 +13,11 @@ jobs:
          echo 'Building ${{ parameters.package_path }}'
          echo 'Restoring from ${{ parameters.package_feed }}'
        displayName: 'Display: Package Path Info'
+	   
+     - task: NuGetToolInstaller@1
+       displayName: 'Use NuGet 5.3.0.6260'
+       inputs:
+         versionSpec: 5.3.0.6260
      
 
      - task: DotNetCoreCLI@2
