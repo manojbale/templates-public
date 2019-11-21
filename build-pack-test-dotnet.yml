@@ -32,9 +32,9 @@ jobs:
 #         includeNuGetOrg: true    
 
 
-       - task: NuGetCommand@2
-         displayName: 'NuGet restore'
-         inputs:
+      - task: NuGetCommand@2
+        displayName: 'NuGet restore'
+        inputs:
           restoreSoution: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
           vstsFeed: '3a42cff0-133d-4c3e-abc3-d3ce59b52044'
      
