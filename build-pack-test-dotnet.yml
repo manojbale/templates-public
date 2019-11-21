@@ -23,13 +23,20 @@ jobs:
          vstsFeed: '${{ parameters.package_feed }}'
          includeNuGetOrg: true
          
-     - task: DotNetCoreCLI@2
-       displayName: 'dotnet restore WebApplication3'
-       inputs:
-         command: restore
-         projects: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
-         vstsFeed: '${{ parameters.package_feed }}'
-         includeNuGetOrg: true     
+#     - task: DotNetCoreCLI@2
+#       displayName: 'dotnet restore WebApplication3'
+#       inputs:
+#         command: restore
+#         projects: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
+#         vstsFeed: '${{ parameters.package_feed }}'
+#         includeNuGetOrg: true    
+
+
+       - task: NuGetCommand@2
+         displayName: 'NuGet restore'
+         inputs:
+          restoreSoution: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
+          vstsFeed: '3a42cff0-133d-4c3e-abc3-d3ce59b52044'
      
 #     - task: DotNetCoreCLI@2
 #       displayName: 'Test: Unit Tests'
