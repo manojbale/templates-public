@@ -14,26 +14,26 @@ jobs:
          echo 'Restoring from ${{ parameters.package_feed }}'
        displayName: 'Display: Package Path Info'
                                                   
-	- task: NuGetToolInstaller@1
-       displayName: 'Use NuGet 5.3.0.6260'
-       inputs:
-         versionSpec: 5.3.0.6260
-		 
-     - task: DotNetCoreCLI@2
-       displayName: 'dotnet restore web application'
-       inputs:
-         command: restore
-         projects: '$(build.sourcesdirectory)/WebApplication1/WebApplication1.sln'
-         vstsFeed: '${{ parameters.package_feed }}'
-         includeNuGetOrg: true
-
-     - task: NuGetCommand@2
-       displayName: 'NuGet restore'
-       inputs:
-          restoreSoution: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
-          vstsFeed: '3a42cff0-133d-4c3e-abc3-d3ce59b52044'
-
-         
+#	 - task: NuGetToolInstaller@1
+#       displayName: 'Use NuGet 5.3.0.6260'
+#       inputs:
+#         versionSpec: 5.3.0.6260
+#		 
+#     - task: DotNetCoreCLI@2
+#       displayName: 'dotnet restore web application'
+#       inputs:
+#         command: restore
+#         projects: '$(build.sourcesdirectory)/WebApplication1/WebApplication1.sln'
+#         vstsFeed: '${{ parameters.package_feed }}'
+#         includeNuGetOrg: true
+#
+#     - task: NuGetCommand@2
+#       displayName: 'NuGet restore'
+#       inputs:
+#          restoreSoution: '$(build.sourcesdirectory)/WebApplication3/WebApplication3.sln'
+#          vstsFeed: '3a42cff0-133d-4c3e-abc3-d3ce59b52044'
+#
+#         
 #     - task: DotNetCoreCLI@2
 #       displayName: 'dotnet restore WebApplication3'
 #       inputs:
